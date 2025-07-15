@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shiv Shakti Industry - Construction Materials Supplier</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .active-tab {
+            border-bottom: 3px solid #3b82f6;
+            color: #3b82f6;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-blue-800 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/76cd683c-a5bb-444e-ab4a-1d7bf01d7380.png"
+                    alt="Shiv Shakti Industry golden logo with divine Shiva and Shakti imagery"
+                    class="rounded-full h-16 w-16">
+                <h1 class="text-xl font-bold">Shiv Shakti Industry</h1>
+            </div>
+            <div id="auth-buttons" class="hidden">
+                <button onclick="showLogin()"
+                    class="bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded-lg font-bold text-sm shadow-md transition duration-300 mr-4">Login</button>
+                <button onclick="showRegister()"
+                    class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-bold text-sm shadow-md transition duration-300">Register
+                    Now</button>
+            </div>
+            <div id="user-info" class="hidden">
+                <span class="mr-4" id="username-display"></span>
+                <button onclick="logout()" class="bg-red-500 text-white px-4 py-2 rounded font-medium">Logout</button>
+            </div>
+            <div id="admin-nav" class="hidden">
+                <button onclick="showAdminPanel()" class="bg-green-500 text-white px-4 py-2 rounded font-medium">Admin
+                    Panel</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Hero Section -->
+        <section class="bg-blue-100 rounded-lg p-8 mb-8 text-center">
+            <h2 class="text-3xl font-bold text-blue-800 mb-4">Premium Construction Materials Supplier</h2>
+            <p class="text-lg text-gray-700 mb-6">Providing high-quality gitti, rods, cement, fly ash, bricks, tiles,
+                paver blocks, and all industry raw materials since 1995</p>
+            <a href="#products" class="bg-yellow-500 text-blue-800 px-6 py-3 rounded-lg font-bold inline-block">Browse
+                Products</a>
+        </section>
+
+        <!-- Login Modal -->
+        <div id="login-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+            <div class="bg-white p-8 rounded-lg max-w-md w-full">
+                <h3 class="text-2xl font-bold mb-6 text-center">Login</h3>
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Email</label>
+                    <input type="email" id="login-email" class="w-full px-3 py-2 border rounded">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 mb-2">Password</label>
+                    <input type="password" id="login-password" class="w-full px-3 py-2 border rounded">
+                </div>
+                <button onclick="login()"
+                    class="w-full bg-blue-700 hover:bg-blue-800 text-white py-3 rounded-lg font-bold text-lg shadow-md mb-4">Sign
+                    In</button>
+                <p id="login-error" class="text-red-500 hidden"></p>
+                <p class="text-center">Don't have an account? <span class="text-blue-600 cursor-pointer"
+                        onclick="switchToRegister()">Register</span></p>
+                <button onclick="hideModal('login-modal')" class="absolute top-4 right-4 text-gray-500">✕</button>
+            </div>
+        </div>
+
+        <!-- Registration Modal -->
+        <div id="register-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+            <div class="bg-white p-8 rounded-lg max-w-md w-full">
+                <h3 class="text-2xl font-bold mb-6 text-center">Register</h3>
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Full Name</label>
+                    <input type="text" id="register-name" class="w-full px-3 py-2 border rounded">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Email</label>
+                    <input type="email" id="register-email" class="w-full px-3 py-2 border rounded">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Phone</label>
+                    <input type="tel" id="register-phone" class="w-full px-3 py-2 border rounded">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 mb-2">Password</label>
+                    <input type="password" id="register-password" class="w-full px-3 py-2 border rounded">
+                </div>
+                <button onclick="register()"
+                    class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-bold text-lg shadow-md mb-4">Create
+                    Account</button>
+                <p id="register-error" class="text-red-500 hidden"></p>
+                <p class="text-center">Already have an account? <span class="text-blue-600 cursor-pointer"
+                        onclick="switchToLogin()">Login</span></p>
+                <button onclick="hideModal('register-modal')" class="absolute top-4 right-4 text-gray-500">✕</button>
+            </div>
+        </div>
+
+        <!-- Products Section -->
+        <section id="products" class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Our Products</h2>
+                <div class="flex space-x-4">
+                    <button id="all-products-tab" class="font-medium active-tab"
+                        onclick="filterProducts('all')">All</button>
+                    <button id="building-materials-tab" class="font-medium"
+                        onclick="filterProducts('building')">Building Materials</button>
+                    <button id="raw-materials-tab" class="font-medium" onclick="filterProducts('raw')">Raw
+                        Materials</button>
+                </div>
+            </div>
+            <div id="products-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Products will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Cart Section (visible only when logged in) -->
+        <section id="cart-section" class="mb-12 hidden">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Your Cart</h2>
+            <div id="cart-items" class="bg-white rounded-lg shadow p-6 mb-6">
+                <!-- Cart items will be loaded here -->
+                <p id="empty-cart-message" class="text-gray-500 text-center">Your cart is empty</p>
+            </div>
+            <div class="flex justify-end">
+                <button id="checkout-btn" class="bg-green-600 text-white px-6 py-3 rounded-lg font-bold">Proceed to
+                    Checkout</button>
+            </div>
+        </section>
+
+        <!-- Order History Section (visible only when logged in) -->
+        <section id="order-history-section" class="mb-12 hidden">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Order History</h2>
+            <div id="order-history" class="bg-white rounded-lg shadow p-6">
+                <!-- Orders will be loaded here -->
+                <p id="no-orders-message" class="text-gray-500 text-center">You haven't placed any orders yet</p>
+            </div>
+        </section>
+
+        <!-- Admin Panel (visible only to admin) -->
+        <section id="admin-panel" class="mb-12 hidden">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Admin Dashboard</h2>
+
+            <div class="flex mb-6">
+                <button id="products-tab" class="px-4 py-2 font-medium active-tab"
+                    onclick="showAdminSection('products')">Manage Products</button>
+                <button id="orders-tab" class="px-4 py-2 font-medium" onclick="showAdminSection('orders')">Manage
+                    Orders</button>
+                <button id="users-tab" class="px-4 py-2 font-medium" onclick="showAdminSection('users')">Manage
+                    Users</button>
+            </div>
+
+            <!-- Manage Products Section -->
+            <div id="admin-products" class="admin-section">
+                <div class="bg-white rounded-lg shadow p-6 mb-6">
+                    <h3 class="text-xl font-bold mb-4">Add New Product</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Product Name</label>
+                            <input type="text" id="product-name" class="w-full px-3 py-2 border rounded">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Category</label>
+                            <select id="product-category" class="w-full px-3 py-2 border rounded">
+                                <option value="building">Building Materials</option>
+                                <option value="raw">Raw Materials</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Price per Unit (₹)</label>
+                            <input type="number" id="product-price" class="w-full px-3 py-2 border rounded">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Unit</label>
+                            <select id="product-unit" class="w-full px-3 py-2 border rounded">
+                                <option value="kg">kg</option>
+                                <option value="ton">ton</option>
+                                <option value="piece">piece</option>
+                                <option value="bag">bag</option>
+                                <option value="sqft">sqft</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2">Description</label>
+                        <textarea id="product-description" class="w-full px-3 py-2 border rounded" rows="3"></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2">Image URL</label>
+                        <input type="text" id="product-image" class="w-full px-3 py-2 border rounded"
+                            placeholder="https://placehold.co/600x400">
+                    </div>
+                    <button onclick="addProduct()" class="bg-blue-800 text-white px-4 py-2 rounded">Add Product</button>
+                </div>
+
+                <h3 class="text-xl font-bold mb-4">Current Products</h3>
+                <div id="admin-products-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Products will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Manage Orders Section -->
+            <div id="admin-orders" class="admin-section hidden">
+                <div id="admin-orders-list">
+                    <!-- Orders will be loaded here -->
+                    <p class="text-gray-500">No orders available</p>
+                </div>
+            </div>
+
+            <!-- Manage Users Section -->
+            <div id="admin-users" class="admin-section hidden">
+                <div id="admin-users-list">
+                    <!-- Users will be loaded here -->
+                    <p class="text-gray-500">No users available</p>
+                </div>
+            </div>
+        </section>
+         <!-- About Us Section -->
+        <section id="about" class="py-16">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col lg:flex-row items-center gap-12">
+                    <div class="lg:w-1/2">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3f2e55a8-ad6d-4f0d-a90d-35467aa50604.png" alt="Shiv Shakti Industry facility overview with heavy machinery and material storage" class="rounded-lg shadow-lg w-full">
+                    </div>
+                    <div class="lg:w-1/2">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">About Shiv Shakti Industry</h2>
+                        <p class="text-gray-600 mb-4">Established in 2018, Shiv Shakti Industry has grown to become a trusted name in the construction materials supply sector. Our commitment to quality and customer satisfaction has made us the preferred choice for builders, contractors, and individual clients.</p>
+                        <p class="text-gray-600 mb-6">We operate with state-of-the-art facilities and stringent quality control measures to ensure that every product leaving our premises meets the highest industry standards. Our team of experts is dedicated to providing not just materials, but complete construction solutions.</p>
+                        <div class="flex flex-wrap gap-4">
+                            <div class="flex items-center bg-gray-100 px-4 py-3 rounded-lg">
+                                <i class="fas fa-check-circle text-orange-500 mr-2"></i>
+                                <span class="text-gray-700">15+ Years Experience</span>
+                            </div>
+                            <div class="flex items-center bg-gray-100 px-4 py-3 rounded-lg">
+                                <i class="fas fa-truck text-orange-500 mr-2"></i>
+                                <span class="text-gray-700">Timely Delivery</span>
+                            </div>
+                            <div class="flex items-center bg-gray-100 px-4 py-3 rounded-lg">
+                                <i class="fas fa-medal text-orange-500 mr-2"></i>
+                                <span class="text-gray-700">Quality Assurance</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Get In Touch</h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto">Have questions or ready to place an order? Contact our team for assistance</p>
+                </div>
+                <div class="flex flex-col lg:flex-row gap-12">
+                    <div class="lg:w-1/2">
+                        <form id="orderForm" class="bg-white p-8 rounded-lg shadow-md">
+                            <div class="mb-6">
+                                <label for="name" class="block text-gray-700 mb-2">Full Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
+                            </div>
+                            <div class="mb-6">
+                                <label for="phone" class="block text-gray-700 mb-2">Phone Number</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
+                            </div>
+                            <div class="mb-6">
+                                <label for="product" class="block text-gray-700 mb-2">Product Interested In</label>
+                                <select id="product" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
+                                    <option value="">Select Product</option>
+                                    <option value="chhad">Chhad</option>
+                                    <option value="gitti">Gitti</option>
+                                    <option value="cement">Cement</option>
+                                    <option value="fly ash">Fly Ash</option>
+                                </select>
+                            </div>
+                            <div class="mb-6">
+                                <label for="quantity" class="block text-gray-700 mb-2">Quantity (in tons/bags)</label>
+                                <input type="number" id="quantity" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
+                            </div>
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-700 mb-2">Additional Details</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-md font-medium transition">
+                                Submit Order Inquiry
+                            </button>
+                        </form>
+                    </div>
+                    <div class="lg:w-1/2">
+                        <div class="bg-white p-8 rounded-lg shadow-md h-full">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-6">Contact Information</h3>
+                            <div class="space-y-6">
+                                <div class="flex items-start">
+                                    <div class="bg-orange-100 p-3 rounded-full mr-4">
+                                        <i class="fas fa-map-marker-alt text-orange-500"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-gray-700 font-medium">Our Location</h4>
+                                        <p class="text-gray-600">Shiv Shakti Industry,Agardih College road Road,Bokaro 828403, Jharkhand, India</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-orange-100 p-3 rounded-full mr-4">
+                                        <i class="fas fa-phone-alt text-orange-500"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-gray-700 font-medium">Phone Numbers</h4>
+                                        <p class="text-gray-600">+91 8825212613</p>
+                                        <p class="text-gray-600">+91 8877941666</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-orange-100 p-3 rounded-full mr-4">
+                                        <i class="fas fa-envelope text-orange-500"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-gray-700 font-medium">Email Address</h4>
+                                        <p class="text-gray-600">info@shivshaktiindustry.com</p>
+                                        <p class="text-gray-600">orders@shivshaktiindustry.com</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-orange-100 p-3 rounded-full mr-4">
+                                        <i class="fas fa-clock text-orange-500"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-gray-700 font-medium">Business Hours</h4>
+                                        <p class="text-gray-600">Monday - Saturday: 8:00 AM - 8:00 PM</p>
+                                        <p class="text-gray-600">Sunday: 10:00 AM - 4:00 PM</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Shiv Shakti Industry</h3>
+                    <p class="mb-2">Your trusted supplier of construction materials</p>
+                    <p>Since 1995</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#products" class="hover:text-yellow-500">Products</a></li>
+                        <li id="footer-cart-link" class="hidden"><a href="#cart-section"
+                                class="hover:text-yellow-500">Your Cart</a></li>
+                        <li id="footer-orders-link" class="hidden"><a href="#order-history-section"
+                                class="hover:text-yellow-500">Your Orders</a></li>
+                        <li id="footer-admin-link" class="hidden"><a href="#admin-panel"
+                                class="hover:text-yellow-500">Admin Panel</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <p class="mb-2">Address: agardin college road telo, Bokaro 828403, Jharkhand</p>
+                    <p class="mb-2">Phone: +91 8825212613</p>
+                    <p>Email: info@shivshaktiindustry.com</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center">
+                <p>© 2023 Shiv Shakti Industry. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize data if not exists
+        if (!localStorage.getItem('users')) {
+            localStorage.setItem('users', JSON.stringify([
+                {
+                    id: 1,
+                    name: 'Admin User',
+                    email: 'admin@example.com',
+                    phone: '1234567890',
+                    password: 'admin123',
+                    isAdmin: true
+                }
+            ]));
+        }
+
+        if (!localStorage.getItem('products')) {
+            localStorage.setItem('products', JSON.stringify([
+                {
+                    id: 1,
+                    name: ' Cement (50kg bag)',
+                    category: 'building',
+                    price: 350,
+                    unit: 'bag',
+                    description: 'Premium quality  cement suitable for all construction purposes',
+                    image: 'https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/98b14d33-1d96-4767-af70-50a35fc9af36.png'
+                },
+                {
+                    id: 2,
+                    name: 'Fly Ash Bricks (9x4x3 inch)',
+                    category: 'building',
+                    price: 8,
+                    unit: 'piece',
+                    description: 'Eco-friendly bricks made from fly ash, strong and durable',
+                    image: 'https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2539da15-488f-41e4-8c52-1f732021fec0.png'
+                },
+                {
+                    id: 3,
+                    name: 'Paver Blocks (60mm thick)',
+                    category: 'building',
+                    price: 45,
+                    unit: 'sqft',
+                    description: 'High-strength concrete paver blocks for driveways and walkways',
+                    image: 'https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ad3117a8-5e32-4c3f-a518-887980608be7.png'
+                },
+                {
+                    id: 4,
+                    name: 'Gitti (10mm aggregate)',
+                    category: 'raw',
+                    price: 1200,
+                    unit: 'ton',
+                    description: 'Crushed stone aggregate for concrete mix and construction',
+                    image: 'https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/520ea5bd-f4bb-4e39-853b-75b0fcceaf2d.png'
+                },
+                {
+                    id: 5,
+                    name: 'Steel Rods (TMT 500D, 12mm)',
+                    category: 'raw',
+                    price: 90,
+                    unit: 'kg',
+                    description: 'High-grade TMT steel rods for reinforcement in construction',
+                    image: 'https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e151ed89-6f53-4218-8f98-971592288548.png'
+                }
+            ]));
+        }
+
+        if (!localStorage.getItem('orders')) {
+            localStorage.setItem('orders', JSON.stringify([]));
+        }
+
+        if (!localStorage.getItem('cart')) {
+            localStorage.setItem('cart', JSON.stringify({}));
+        }
+
+        // Current user state
+        let currentUser = null;
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function () {
+            checkAuthStatus();
+            loadProducts();
+
+            // Hide all admin sections except the first one
+            document.querySelectorAll('.admin-section').forEach((section, index) => {
+                if (index > 0) section.classList.add('hidden');
+            });
+        });
+
+        // Authentication functions
+        function checkAuthStatus() {
+            const authButtons = document.getElementById('auth-buttons');
+            const userInfo = document.getElementById('user-info');
+            const usernameDisplay = document.getElementById('username-display');
+            const cartSection = document.getElementById('cart-section');
+            const orderHistorySection = document.getElementById('order-history-section');
+            const adminNav = document.getElementById('admin-nav');
+            const adminPanel = document.getElementById('admin-panel');
+            const footerCartLink = document.getElementById('footer-cart-link');
+            const footerOrdersLink = document.getElementById('footer-orders-link');
+            const footerAdminLink = document.getElementById('footer-admin-link');
+
+            if (currentUser) {
+                authButtons.classList.add('hidden');
+                userInfo.classList.remove('hidden');
+                usernameDisplay.textContent = `Welcome, ${currentUser.name}`;
+                cartSection.classList.remove('hidden');
+                orderHistorySection.classList.remove('hidden');
+                loadCart();
+                loadOrderHistory();
+                footerCartLink.classList.remove('hidden');
+                footerOrdersLink.classList.remove('hidden');
+
+                if (currentUser.isAdmin) {
+                    adminNav.classList.remove('hidden');
+                    adminPanel.classList.remove('hidden');
+                    footerAdminLink.classList.remove('hidden');
+                    loadAdminData();
+                } else {
+                    adminNav.classList.add('hidden');
+                    adminPanel.classList.add('hidden');
+                    footerAdminLink.classList.add('hidden');
+                }
+            } else {
+                authButtons.classList.remove('hidden');
+                userInfo.classList.add('hidden');
+                cartSection.classList.add('hidden');
+                orderHistorySection.classList.add('hidden');
+                adminNav.classList.add('hidden');
+                adminPanel.classList.add('hidden');
+                footerCartLink.classList.add('hidden');
+                footerOrdersLink.classList.add('hidden');
+                footerAdminLink.classList.add('hidden');
+            }
+        }
+
+        function showLogin() {
+            document.getElementById('login-modal').classList.remove('hidden');
+        }
+
+        function showRegister() {
+            document.getElementById('register-modal').classList.remove('hidden');
+        }
+
+        function hideModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+            document.getElementById('login-error').classList.add('hidden');
+            document.getElementById('register-error').classList.add('hidden');
+        }
+
+        function switchToRegister() {
+            hideModal('login-modal');
+            showRegister();
+        }
+
+        function switchToLogin() {
+            hideModal('register-modal');
+            showLogin();
+        }
+
+        function login() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const errorElement = document.getElementById('login-error');
+
+            if (!email || !password) {
+                errorElement.textContent = 'Please fill in all fields';
+                errorElement.classList.remove('hidden');
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('users'));
+            const user = users.find(u => u.email === email && u.password === password);
+
+            if (user) {
+                currentUser = user;
+                checkAuthStatus();
+                hideModal('login-modal');
+            } else {
+                errorElement.textContent = 'Invalid email or password';
+                errorElement.classList.remove('hidden');
+            }
+        }
+
+        function register() {
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const phone = document.getElementById('register-phone').value;
+            const password = document.getElementById('register-password').value;
+            const errorElement = document.getElementById('register-error');
+
+            if (!name || !email || !phone || !password) {
+                errorElement.textContent = 'Please fill in all fields';
+                errorElement.classList.remove('hidden');
+                return;
+            }
+
+            if (password.length < 6) {
+                errorElement.textContent = 'Password must be at least 6 characters';
+                errorElement.classList.remove('hidden');
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('users'));
+            const existingUser = users.find(u => u.email === email);
+
+            if (existingUser) {
+                errorElement.textContent = 'Email already registered';
+                errorElement.classList.remove('hidden');
+                return;
+            }
+
+            const newUser = {
+                id: users.length + 1,
+                name,
+                email,
+                phone,
+                password,
+                isAdmin: false
+            };
+
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+
+            // Auto-login after registration
+            currentUser = newUser;
+            checkAuthStatus();
+            hideModal('register-modal');
+        }
+
+        function logout() {
+            currentUser = null;
+            checkAuthStatus();
+        }
+
+        // Product and cart functions
+        function loadProducts(category = 'all') {
+            const productsContainer = document.getElementById('products-container');
+            productsContainer.innerHTML = '';
+
+            const products = JSON.parse(localStorage.getItem('products'));
+            let filteredProducts = products;
+
+            if (category === 'building') {
+                filteredProducts = products.filter(p => p.category === 'building');
+                document.getElementById('all-products-tab').classList.remove('active-tab');
+                document.getElementById('building-materials-tab').classList.add('active-tab');
+                document.getElementById('raw-materials-tab').classList.remove('active-tab');
+            } else if (category === 'raw') {
+                filteredProducts = products.filter(p => p.category === 'raw');
+                document.getElementById('all-products-tab').classList.remove('active-tab');
+                document.getElementById('building-materials-tab').classList.remove('active-tab');
+                document.getElementById('raw-materials-tab').classList.add('active-tab');
+            } else {
+                document.getElementById('all-products-tab').classList.add('active-tab');
+                document.getElementById('building-materials-tab').classList.remove('active-tab');
+                document.getElementById('raw-materials-tab').classList.remove('active-tab');
+            }
+
+            if (filteredProducts.length === 0) {
+                productsContainer.innerHTML = '<p class="col-span-3 text-center text-gray-500">No products available</p>';
+                return;
+            }
+
+            filteredProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card bg-white rounded-lg shadow overflow-hidden transition-transform duration-200';
+
+                productCard.innerHTML = `
+                    <div class="h-48 overflow-hidden">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">${product.name}</h3>
+                        <p class="text-gray-600 mb-2">₹${product.price} / ${product.unit}</p>
+                        <p class="text-gray-500 text-sm mb-3">${product.description}</p>
+                        ${currentUser ? `
+                            <div class="flex justify-between items-center">
+                                <input type="number" id="qty-${product.id}" min="1" value="1" class="w-16 px-2 py-1 border rounded">
+                                <button onclick="addToCart(${product.id})" class="bg-blue-800 text-white px-3 py-1 rounded">Add to Cart</button>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+
+                productsContainer.appendChild(productCard);
+            });
+        }
+
+        function filterProducts(category) {
+            loadProducts(category);
+        }
+
+        function addToCart(productId) {
+            const quantityInput = document.getElementById(`qty-${productId}`);
+            const quantity = parseInt(quantityInput.value) || 1;
+
+            let cart = JSON.parse(localStorage.getItem('cart'));
+
+            if (cart[currentUser.id]) {
+                if (cart[currentUser.id][productId]) {
+                    cart[currentUser.id][productId] += quantity;
+                } else {
+                    cart[currentUser.id][productId] = quantity;
+                }
+            } else {
+                cart[currentUser.id] = { [productId]: quantity };
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+
+            // Show success message
+            const products = JSON.parse(localStorage.getItem('products'));
+            const product = products.find(p => p.id === productId);
+
+            alert(`Added ${quantity} ${product.unit} of ${product.name} to your cart`);
+        }
+
+        function loadCart() {
+            const cartItemsElement = document.getElementById('cart-items');
+            const emptyCartMessage = document.getElementById('empty-cart-message');
+            const checkoutBtn = document.getElementById('checkout-btn');
+
+            let cart = JSON.parse(localStorage.getItem('cart'));
+            const userCart = cart[currentUser.id] || {};
+
+            if (Object.keys(userCart).length === 0) {
+                cartItemsElement.innerHTML = '<p id="empty-cart-message" class="text-gray-500 text-center">Your cart is empty</p>';
+                checkoutBtn.disabled = true;
+                checkoutBtn.classList.add('opacity-50');
+                return;
+            }
+
+            emptyCartMessage.remove();
+
+            const cartTable = document.createElement('div');
+            cartTable.className = 'mb-6';
+
+            let total = 0;
+            const products = JSON.parse(localStorage.getItem('products'));
+
+            Object.keys(userCart).forEach(productId => {
+                const id = parseInt(productId);
+                const product = products.find(p => p.id === id);
+
+                if (product) {
+                    const quantity = userCart[id];
+                    const subtotal = product.price * quantity;
+                    total += subtotal;
+
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'flex justify-between items-center py-3 border-b';
+
+                    cartItem.innerHTML = `
+                        <div class="flex items-center">
+                            <img src="${product.image}" alt="${product.name}" class="w-16 h-16 object-cover rounded mr-4">
+                            <div>
+                                <h4 class="font-medium">${product.name}</h4>
+                                <p class="text-sm text-gray-500">₹${product.price} / ${product.unit}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <button onclick="updateCartQuantity(${id}, false)" class="bg-gray-200 px-2 py-1 rounded">-</button>
+                            <span class="mx-2">${quantity}</span>
+                            <button onclick="updateCartQuantity(${id}, true)" class="bg-gray-200 px-2 py-1 rounded">+</button>
+                            <span class="ml-4 font-medium w-24 text-right">₹${subtotal.toFixed(2)}</span>
+                            <button onclick="removeFromCart(${id})" class="ml-4 text-red-500">✕</button>
+                        </div>
+                    `;
+
+                    cartTable.appendChild(cartItem);
+                }
+            });
+
+            cartItemsElement.innerHTML = '';
+            cartItemsElement.appendChild(cartTable);
+
+            const totalElement = document.createElement('div');
+            totalElement.className = 'flex justify-between items-center py-3 border-t font-bold';
+            totalElement.innerHTML = `
+                <span>Total</span>
+                <span>₹${total.toFixed(2)}</span>
+            `;
+            cartItemsElement.appendChild(totalElement);
+
+            checkoutBtn.disabled = false;
+            checkoutBtn.classList.remove('opacity-50');
+            checkoutBtn.onclick = () => checkout(total);
+        }
+
+        function updateCartQuantity(productId, increase) {
+            let cart = JSON.parse(localStorage.getItem('cart'));
+
+            if (increase) {
+                cart[currentUser.id][productId] += 1;
+            } else {
+                cart[currentUser.id][productId] = Math.max(1, cart[currentUser.id][productId] - 1);
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        function removeFromCart(productId) {
+            let cart = JSON.parse(localStorage.getItem('cart'));
+            delete cart[currentUser.id][productId];
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        function checkout(total) {
+            if (!confirm(`Confirm order for ₹${total.toFixed(2)}?`)) {
+                return;
+            }
+
+            const cart = JSON.parse(localStorage.getItem('cart'));
+            const userCart = cart[currentUser.id] || {};
+
+            if (Object.keys(userCart).length === 0) {
+                alert('Your cart is empty');
+                return;
+            }
+
+            const products = JSON.parse(localStorage.getItem('products'));
+            const now = new Date();
+
+            const order = {
+                id: Date.now(),
+                userId: currentUser.id,
+                date: now.toISOString(),
+                items: [],
+                total: 0,
+                status: 'pending'
+            };
+
+            Object.keys(userCart).forEach(productId => {
+                const id = parseInt(productId);
+                const product = products.find(p => p.id === id);
+
+                if (product) {
+                    const quantity = userCart[id];
+                    const subtotal = product.price * quantity;
+
+                    order.items.push({
+                        productId: id,
+                        productName: product.name,
+                        quantity,
+                        price: product.price,
+                        unit: product.unit,
+                        subtotal
+                    });
+
+                    order.total += subtotal;
+                }
+            });
+
+            // Add shipping address prompt
+            const shippingAddress = prompt('Please enter your shipping address:');
+            if (!shippingAddress) {
+                alert('Order cancelled - shipping address required');
+                return;
+            }
+
+            order.shippingAddress = shippingAddress;
+
+            // Save order
+            const orders = JSON.parse(localStorage.getItem('orders'));
+            orders.push(order);
+            localStorage.setItem('orders', JSON.stringify(orders));
+
+            // Clear cart
+            delete cart[currentUser.id];
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            alert('Order placed successfully! Our team will contact you soon.');
+            loadCart();
+            loadOrderHistory();
+
+            if (currentUser.isAdmin) {
+                loadAdminData();
+            }
+        }
+
+        function loadOrderHistory() {
+            const orderHistoryElement = document.getElementById('order-history');
+            const noOrdersMessage = document.getElementById('no-orders-message');
+
+            const orders = JSON.parse(localStorage.getItem('orders'));
+            const userOrders = orders.filter(o => o.userId === currentUser.id);
+
+            if (userOrders.length === 0) {
+                orderHistoryElement.innerHTML = '<p id="no-orders-message" class="text-gray-500 text-center">You haven\'t placed any orders yet</p>';
+                return;
+            }
+
+            noOrdersMessage.remove();
+
+            userOrders.sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(order => {
+                const orderElement = document.createElement('div');
+                orderElement.className = 'mb-6 border-b pb-6';
+
+                const date = new Date(order.date);
+                const statusClass = order.status === 'completed' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800';
+
+                orderElement.innerHTML = `
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-medium">Order #${order.id}</span>
+                        <span class="text-sm text-gray-500">${date.toLocaleDateString()}</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-bold">₹${order.total.toFixed(2)}</span>
+                        <span class="text-sm px-2 py-1 rounded ${statusClass}">${order.status}</span>
+                    </div>
+                    <div class="mb-2">
+                        <p class="text-sm"><span class="font-medium">Shipping to:</span> ${order.shippingAddress}</p>
+                    </div>
+                `;
+
+                const itemsContainer = document.createElement('div');
+                itemsContainer.className = 'space-y-2 mt-2';
+
+                order.items.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'flex justify-between';
+                    itemElement.innerHTML = `
+                        <span>${item.productName} (${item.quantity} ${item.unit})</span>
+                        <span>₹${item.subtotal.toFixed(2)}</span>
+                    `;
+                    itemsContainer.appendChild(itemElement);
+                });
+
+                orderElement.appendChild(itemsContainer);
+                orderHistoryElement.appendChild(orderElement);
+            });
+        }
+
+        // Admin functions
+        function showAdminPanel() {
+            document.getElementById('admin-panel').scrollIntoView();
+        }
+
+        function showAdminSection(section) {
+            document.querySelectorAll('.admin-section').forEach(s => s.classList.add('hidden'));
+            document.getElementById(`admin-${section}`).classList.remove('hidden');
+
+            document.querySelectorAll('#admin-panel button').forEach(btn => btn.classList.remove('active-tab'));
+            document.getElementById(`${section}-tab`).classList.add('active-tab');
+        }
+
+        function loadAdminData() {
+            loadAdminProducts();
+            loadAdminOrders();
+            loadAdminUsers();
+        }
+
+        function loadAdminProducts() {
+            const container = document.getElementById('admin-products-list');
+            container.innerHTML = '';
+
+            const products = JSON.parse(localStorage.getItem('products'));
+
+            if (products.length === 0) {
+                container.innerHTML = '<p class="col-span-3 text-center text-gray-500">No products available</p>';
+                return;
+            }
+
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card bg-white rounded-lg shadow overflow-hidden';
+
+                productCard.innerHTML = `
+                    <div class="h-48 overflow-hidden">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">${product.name}</h3>
+                        <p class="text-gray-600 mb-2">₹${product.price} / ${product.unit}</p>
+                        <p class="text-gray-500 text-sm mb-3">${product.description}</p>
+                        <div class="flex space-x-2">
+                            <button onclick="editProduct(${product.id})" class="bg-yellow-500 text-white px-2 py-1 rounded text-sm">Edit</button>
+                            <button onclick="deleteProduct(${product.id})" class="bg-red-500 text-white px-2 py-1 rounded text-sm">Delete</button>
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(productCard);
+            });
+        }
+
+        function addProduct() {
+            const name = document.getElementById('product-name').value.trim();
+            const category = document.getElementById('product-category').value;
+            const price = parseFloat(document.getElementById('product-price').value);
+            const unit = document.getElementById('product-unit').value;
+            const description = document.getElementById('product-description').value.trim();
+            const imageUrl = document.getElementById('product-image').value.trim() || 'https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/cf523997-b379-456b-829f-2e5e49bb6e0d.png';
+
+            if (!name || isNaN(price) || !description) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            const products = JSON.parse(localStorage.getItem('products'));
+            const newProduct = {
+                id: products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1,
+                name,
+                category,
+                price,
+                unit,
+                description,
+                image: imageUrl
+            };
+
+            products.push(newProduct);
+            localStorage.setItem('products', JSON.stringify(products));
+
+            // Clear form
+            document.getElementById('product-name').value = '';
+            document.getElementById('product-price').value = '';
+            document.getElementById('product-description').value = '';
+            document.getElementById('product-image').value = '';
+
+            loadProducts();
+            loadAdminProducts();
+
+            alert('Product added successfully');
+        }
+
+        function editProduct(productId) {
+            const products = JSON.parse(localStorage.getItem('products'));
+            const product = products.find(p => p.id === productId);
+
+            if (!product) return;
+
+            const newName = prompt('Product Name:', product.name);
+            if (newName === null) return;
+
+            const newPrice = prompt('Price:', product.price);
+            if (newPrice === null) return;
+
+            const newDescription = prompt('Description:', product.description);
+            if (newDescription === null) return;
+
+            product.name = newName;
+            product.price = parseFloat(newPrice);
+            product.description = newDescription;
+
+            localStorage.setItem('products', JSON.stringify(products));
+            loadProducts();
+            loadAdminProducts();
+
+            alert('Product updated successfully');
+        }
+
+        function deleteProduct(productId) {
+            if (!confirm('Are you sure you want to delete this product?')) {
+                return;
+            }
+
+            const products = JSON.parse(localStorage.getItem('products'));
+            const updatedProducts = products.filter(p => p.id !== productId);
+
+            localStorage.setItem('products', JSON.stringify(updatedProducts));
+            loadProducts();
+            loadAdminProducts();
+
+            alert('Product deleted successfully');
+        }
+
+        function loadAdminOrders() {
+            const container = document.getElementById('admin-orders-list');
+            container.innerHTML = '';
+
+            const orders = JSON.parse(localStorage.getItem('orders'));
+            const users = JSON.parse(localStorage.getItem('users'));
+
+            if (orders.length === 0) {
+                container.innerHTML = '<p class="text-gray-500">No orders available</p>';
+                return;
+            }
+
+            orders.sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(order => {
+                const orderElement = document.createElement('div');
+                orderElement.className = 'bg-white rounded-lg shadow p-6 mb-4';
+
+                const user = users.find(u => u.id === order.userId);
+                const date = new Date(order.date);
+                const statusClass = order.status === 'completed' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800';
+
+                orderElement.innerHTML = `
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="font-bold">Order #${order.id}</h3>
+                            <p class="text-sm text-gray-500">${user ? user.name : 'Unknown User'} (${user ? user.email : ''})</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-sm text-gray-500">${date.toLocaleDateString()}</span>
+                            <div class="mt-1">
+                                <span class="text-sm px-2 py-1 rounded ${statusClass}">${order.status}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-sm"><span class="font-medium">Shipping Address:</span> ${order.shippingAddress}</p>
+                    </div>
+                    <div class="mb-2">
+                        <h4 class="font-medium mb-1">Items:</h4>
+                        <div class="space-y-2">
+                `;
+
+                order.items.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'flex justify-between text-sm';
+                    itemElement.innerHTML = `
+                        <span>${item.productName} (${item.quantity} ${item.unit})</span>
+                        <span>₹${item.subtotal.toFixed(2)}</span>
+                    `;
+                    orderElement.appendChild(itemElement);
+                });
+
+                orderElement.innerHTML += `
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center border-t pt-3">
+                        <span class="font-bold">Total: ₹${order.total.toFixed(2)}</span>
+                        ${order.status !== 'completed' ? `
+                            <button onclick="completeOrder(${order.id})" class="bg-green-600 text-white px-3 py-1 rounded text-sm">Mark Completed</button>
+                        ` : ''}
+                    </div>
+                `;
+
+                container.appendChild(orderElement);
+            });
+        }
+
+        function completeOrder(orderId) {
+            if (!confirm('Mark this order as completed?')) {
+                return;
+            }
+
+            const orders = JSON.parse(localStorage.getItem('orders'));
+            const order = orders.find(o => o.id === orderId);
+
+            if (order) {
+                order.status = 'completed';
+                localStorage.setItem('orders', JSON.stringify(orders));
+                loadAdminOrders();
+
+                alert('Order marked as completed');
+            }
+        }
+
+        function loadAdminUsers() {
+            const container = document.getElementById('admin-users-list');
+            container.innerHTML = '';
+
+            const users = JSON.parse(localStorage.getItem('users'));
+
+            if (users.length === 0) {
+                container.innerHTML = '<p class="text-gray-500">No users available</p>';
+                return;
+            }
+
+            const table = document.createElement('div');
+            table.className = 'bg-white rounded-lg shadow overflow-hidden';
+
+            table.innerHTML = `
+                <div class="grid grid-cols-12 gap-4 p-4 font-bold border-b">
+                    <div class="col-span-4">Name</div>
+                    <div class="col-span-4">Email</div>
+                    <div class="col-span-3">Phone</div>
+                    <div class="col-span-1">Admin</div>
+                </div>
+            `;
+
+            users.forEach(user => {
+                const userRow = document.createElement('div');
+                userRow.className = 'grid grid-cols-12 gap-4 p-4 border-b';
+
+                userRow.innerHTML = `
+                    <div class="col-span-4">${user.name}</div>
+                    <div class="col-span-4">${user.email}</div>
+                    <div class="col-span-3">${user.phone}</div>
+                    <div class="col-span-1">
+                        <input type="checkbox" ${user.isAdmin ? 'checked' : ''} onclick="toggleAdminStatus(${user.id})">
+                    </div>
+                `;
+
+                table.appendChild(userRow);
+            });
+
+            container.appendChild(table);
+        }
+
+        function toggleAdminStatus(userId) {
+            if (userId === currentUser.id) {
+                alert('You cannot change your own admin status');
+                document.querySelector(`input[onclick="toggleAdminStatus(${userId})"]`).checked = true;
+                return;
+            }
+
+            if (!confirm('Are you sure you want to change this user\'s admin status?')) {
+                document.querySelector(`input[onclick="toggleAdminStatus(${userId})"]`).checked =
+                    !document.querySelector(`input[onclick="toggleAdminStatus(${userId})"]`).checked;
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('users'));
+            const user = users.find(u => u.id === userId);
+
+            if (user) {
+                user.isAdmin = !user.isAdmin;
+                localStorage.setItem('users', JSON.stringify(users));
+                loadAdminUsers();
+            }
+        }
+    </script>
+</body>
+
+</html>
