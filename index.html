@@ -667,8 +667,13 @@
             if (category === 'bricks') {
                 filteredProducts = products.filter(p => p.category === 'bricks');
                 document.getElementById('all-products-tab').classList.remove('active-tab');
+                document.getElementById('cements').classList.remove('active-tab');
+                document.getElementById('paver').classList.remove('active-tab');
+                document.getElementById('fly-ash').classList.remove('active-tab');
+                document.getElementById('iron-rod').classList.remove('active-tab');
+                document.getElementById('gittis').classList.remove('active-tab');
+                document.getElementById('putty').classList.remove('active-tab');
                 document.getElementById('bricks').classList.add('active-tab');
-                document.getElementById('raw-materials-tab').classList.remove('active-tab');
             } else if (category === 'cements') {
                 filteredProducts = products.filter(p => p.category === 'cements');
                 document.getElementById('all-products-tab').classList.remove('active-tab');
