@@ -1205,6 +1205,25 @@
                 loadAdminUsers();
             }
         }
+                //for enquiry form
+function sendMail() {
+    let params = {
+        name: document.getElementById("name").value,
+        phone: document.getElementById("phone").value,
+        product: document.getElementById("product").value,
+        quantity: document.getElementById("quantity").value,
+        message: document.getElementById("message").value
+    };
+
+    emailjs.send("service_te9tkbf", "template_idxbbj8", params)
+        .then(function(response) {
+            alert("Email has been sent!!");
+        }, function(error) {
+            alert("Failed to send email. Please try again later.");
+            console.error("EmailJS Error:", error);
+        });
+}
+
     </script>
 </body>
 
