@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shiv Shakti Industry - Construction Materials Supplier</title>
     <script src="https://cdn.tailwindcss.com"></script>
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .hidden {
             display: none;
@@ -22,7 +22,7 @@
             color: #3b82f6;
         }
     </style>
-        <!-- for enquiry-->
+    <!-- for enquiry-->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
     </script>
     <script type="text/javascript">
@@ -130,10 +130,13 @@
                 <div class="flex space-x-4">
                     <button id="all-products-tab" class="font-medium active-tab"
                         onclick="filterProducts('all')">All</button>
-                    <button id="building-materials-tab" class="font-medium"
-                        onclick="filterProducts('building')">Building Materials</button>
-                    <button id="raw-materials-tab" class="font-medium" onclick="filterProducts('raw')">Raw
-                        Materials</button>
+                    <button id="bricks" class="font-medium" onclick="filterProducts('bricks')">Bricks</button>
+                    <button id="cements" class="font-medium" onclick="filterProducts('cements')">Cements</button>
+                    <button id="paver" class="font-medium" onclick="filterProducts('paver')">Paver Blocks</button>
+                    <button id="fly-ash" class="font-medium" onclick="filterProducts('fly-ash')">Fly Ash</button>
+                    <button id="iron-rod" class="font-medium" onclick="filterProducts('iron-rod')">Iron Rods</button>
+                    <button id="gittis" class="font-medium" onclick="filterProducts('gittis')">Gittis</button>
+                    <button id="putty" class="font-medium" onclick="filterProducts('putty')">Putty</button>
                 </div>
             </div>
             <div id="products-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -188,8 +191,13 @@
                         <div>
                             <label class="block text-gray-700 mb-2">Category</label>
                             <select id="product-category" class="w-full px-3 py-2 border rounded">
-                                <option value="building">Building Materials</option>
-                                <option value="raw">Raw Materials</option>
+                                <option value="bricks">Bricks</option>
+                                <option value="cements">cements</option>
+                                <option value="paver">Paver blocks</option>
+                                <option value="fly-ash">Fly ash</option>
+                                <option value="iron-rod">Iron rod</option>
+                                <option value="gittis">Gittis</option>
+                                <option value="putty">Putty</option>
                             </select>
                         </div>
                     </div>
@@ -243,17 +251,25 @@
                 </div>
             </div>
         </section>
-         <!-- About Us Section -->
+        <!-- About Us Section -->
         <section id="about" class="py-16">
             <div class="container mx-auto px-4">
                 <div class="flex flex-col lg:flex-row items-center gap-12">
                     <div class="lg:w-1/2">
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3f2e55a8-ad6d-4f0d-a90d-35467aa50604.png" alt="Shiv Shakti Industry facility overview with heavy machinery and material storage" class="rounded-lg shadow-lg w-full">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3f2e55a8-ad6d-4f0d-a90d-35467aa50604.png"
+                            alt="Shiv Shakti Industry facility overview with heavy machinery and material storage"
+                            class="rounded-lg shadow-lg w-full">
                     </div>
                     <div class="lg:w-1/2">
                         <h2 class="text-3xl font-bold text-gray-800 mb-6">About Shiv Shakti Industry</h2>
-                        <p class="text-gray-600 mb-4">Established in 2018, Shiv Shakti Industry has grown to become a trusted name in the construction materials supply sector. Our commitment to quality and customer satisfaction has made us the preferred choice for builders, contractors, and individual clients.</p>
-                        <p class="text-gray-600 mb-6">We operate with state-of-the-art facilities and stringent quality control measures to ensure that every product leaving our premises meets the highest industry standards. Our team of experts is dedicated to providing not just materials, but complete construction solutions.</p>
+                        <p class="text-gray-600 mb-4">Established in 2018, Shiv Shakti Industry has grown to become a
+                            trusted name in the construction materials supply sector. Our commitment to quality and
+                            customer satisfaction has made us the preferred choice for builders, contractors, and
+                            individual clients.</p>
+                        <p class="text-gray-600 mb-6">We operate with state-of-the-art facilities and stringent quality
+                            control measures to ensure that every product leaving our premises meets the highest
+                            industry standards. Our team of experts is dedicated to providing not just materials, but
+                            complete construction solutions.</p>
                         <div class="flex flex-wrap gap-4">
                             <div class="flex items-center bg-gray-100 px-4 py-3 rounded-lg">
                                 <i class="fas fa-check-circle text-orange-500 mr-2"></i>
@@ -277,22 +293,27 @@
             <div class="container mx-auto px-4">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl font-bold text-gray-800 mb-4">Get In Touch</h2>
-                    <p class="text-gray-600 max-w-3xl mx-auto">Have questions or ready to place an order? Contact our team for assistance</p>
+                    <p class="text-gray-600 max-w-3xl mx-auto">Have questions or ready to place an order? Contact our
+                        team for assistance</p>
                 </div>
                 <div class="flex flex-col lg:flex-row gap-12">
                     <div class="lg:w-1/2">
-                        <form onsubmit="event.preventDefault(); sendMail();"  id="orderForm" class="bg-white p-8 rounded-lg shadow-md">
+                        <form onsubmit="event.preventDefault(); sendMail();" id="orderForm"
+                            class="bg-white p-8 rounded-lg shadow-md">
                             <div class="mb-6">
                                 <label for="name" class="block text-gray-700 mb-2">Full Name</label>
-                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
+                                <input type="text" id="name"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
                             </div>
                             <div class="mb-6">
                                 <label for="phone" class="block text-gray-700 mb-2">Phone Number</label>
-                                <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
+                                <input type="tel" id="phone"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
                             </div>
                             <div class="mb-6">
                                 <label for="product" class="block text-gray-700 mb-2">Product Interested In</label>
-                                <select id="product" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
+                                <select id="product"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
                                     <option value="">Select Product</option>
                                     <option value="chhad">Chhad</option>
                                     <option value="gitti">Gitti</option>
@@ -302,13 +323,16 @@
                             </div>
                             <div class="mb-6">
                                 <label for="quantity" class="block text-gray-700 mb-2">Quantity (in tons/bags)</label>
-                                <input type="number" id="quantity" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
+                                <input type="number" id="quantity"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
                             </div>
                             <div class="mb-6">
                                 <label for="message" class="block text-gray-700 mb-2">Additional Details</label>
-                                <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"></textarea>
+                                <textarea id="message" rows="4"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"></textarea>
                             </div>
-                            <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-md font-medium transition">
+                            <button type="submit" onclick="sendMail()"
+                                class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-md font-medium transition">
                                 Submit Order Inquiry
                             </button>
                         </form>
@@ -323,7 +347,8 @@
                                     </div>
                                     <div>
                                         <h4 class="text-gray-700 font-medium">Our Location</h4>
-                                        <p class="text-gray-600">Shiv Shakti Industry,Agardih College road Road,Bokaro 828403, Jharkhand, India</p>
+                                        <p class="text-gray-600">Shiv Shakti Industry,Agardih College road Road,Bokaro
+                                            828403, Jharkhand, India</p>
                                     </div>
                                 </div>
                                 <div class="flex items-start">
@@ -639,16 +664,71 @@
             const products = JSON.parse(localStorage.getItem('products'));
             let filteredProducts = products;
 
-            if (category === 'building') {
-                filteredProducts = products.filter(p => p.category === 'building');
+            if (category === 'bricks') {
+                filteredProducts = products.filter(p => p.category === 'bricks');
                 document.getElementById('all-products-tab').classList.remove('active-tab');
-                document.getElementById('building-materials-tab').classList.add('active-tab');
+                document.getElementById('bricks').classList.add('active-tab');
                 document.getElementById('raw-materials-tab').classList.remove('active-tab');
-            } else if (category === 'raw') {
-                filteredProducts = products.filter(p => p.category === 'raw');
+            } else if (category === 'cements') {
+                filteredProducts = products.filter(p => p.category === 'cements');
                 document.getElementById('all-products-tab').classList.remove('active-tab');
-                document.getElementById('building-materials-tab').classList.remove('active-tab');
-                document.getElementById('raw-materials-tab').classList.add('active-tab');
+                document.getElementById('bricks').classList.remove('active-tab');
+                document.getElementById('paver').classList.remove('active-tab');
+                document.getElementById('fly-ash').classList.remove('active-tab');
+                document.getElementById('iron-rod').classList.remove('active-tab');
+                document.getElementById('gittis').classList.remove('active-tab');
+                document.getElementById('putty').classList.remove('active-tab');
+                document.getElementById('cements').classList.add('active-tab');
+            } else if (category === 'paver') {
+                filteredProducts = products.filter(p => p.category === 'paver');
+                document.getElementById('all-products-tab').classList.remove('active-tab');
+                document.getElementById('bricks').classList.remove('active-tab');
+                document.getElementById('cements').classList.remove('active-tab');
+                document.getElementById('fly-ash').classList.remove('active-tab');
+                document.getElementById('iron-rod').classList.remove('active-tab');
+                document.getElementById('gittis').classList.remove('active-tab');
+                document.getElementById('putty').classList.remove('active-tab');
+                document.getElementById('paver').classList.add('active-tab');
+            } else if (category === 'fly-ash') {
+                filteredProducts = products.filter(p => p.category === 'fly-ash');
+                document.getElementById('all-products-tab').classList.remove('active-tab');
+                document.getElementById('bricks').classList.remove('active-tab');
+                document.getElementById('paver').classList.remove('active-tab');
+                document.getElementById('cements').classList.remove('active-tab');
+                document.getElementById('iron-rod').classList.remove('active-tab');
+                document.getElementById('gittis').classList.remove('active-tab');
+                document.getElementById('putty').classList.remove('active-tab');
+                document.getElementById('fly-ash').classList.add('active-tab');
+            } else if (category === 'iron-rod') {
+                filteredProducts = products.filter(p => p.category === 'iron-rod');
+                document.getElementById('all-products-tab').classList.remove('active-tab');
+                document.getElementById('bricks').classList.remove('active-tab');
+                document.getElementById('paver').classList.remove('active-tab');
+                document.getElementById('fly-ash').classList.remove('active-tab');
+                document.getElementById('cements').classList.remove('active-tab');
+                document.getElementById('gittis').classList.remove('active-tab');
+                document.getElementById('putty').classList.remove('active-tab');
+                document.getElementById('iron-rod').classList.add('active-tab');
+            } else if (category === 'gittis') {
+                filteredProducts = products.filter(p => p.category === 'gittis');
+                document.getElementById('all-products-tab').classList.remove('active-tab');
+                document.getElementById('bricks').classList.remove('active-tab');
+                document.getElementById('paver').classList.remove('active-tab');
+                document.getElementById('fly-ash').classList.remove('active-tab');
+                document.getElementById('iron-rod').classList.remove('active-tab');
+                document.getElementById('cements').classList.remove('active-tab');
+                document.getElementById('putty').classList.remove('active-tab');
+                document.getElementById('gittis').classList.add('active-tab');
+            }  else if (category === 'putty') {
+                filteredProducts = products.filter(p => p.category === 'putty');
+                document.getElementById('all-products-tab').classList.remove('active-tab');
+                document.getElementById('bricks').classList.remove('active-tab');
+                document.getElementById('paver').classList.remove('active-tab');
+                document.getElementById('fly-ash').classList.remove('active-tab');
+                document.getElementById('iron-rod').classList.remove('active-tab');
+                document.getElementById('cements').classList.remove('active-tab');
+                document.getElementById('cements').classList.remove('active-tab');
+                document.getElementById('putty').classList.add('active-tab');
             } else {
                 document.getElementById('all-products-tab').classList.add('active-tab');
                 document.getElementById('building-materials-tab').classList.remove('active-tab');
@@ -1213,26 +1293,33 @@
                 loadAdminUsers();
             }
         }
-                //for enquiry form
-function sendMail() {
-    let params = {
-        name: document.getElementById("name").value,
-        phone: document.getElementById("phone").value,
-        product: document.getElementById("product").value,
-        quantity: document.getElementById("quantity").value,
-        message: document.getElementById("message").value
-    };
+        //for enquiry form
+        function sendMail() {
+            let params = {
+                name: document.getElementById("name").value,
+                phone: document.getElementById("phone").value,
+                product: document.getElementById("product").value,
+                quantity: document.getElementById("quantity").value,
+                message: document.getElementById("message").value
+            };
 
-    emailjs.send("service_te9tkbf", "template_idxbbj8", params)
-        .then(function(response) {
-            alert("Email has been sent!!");
-        }, function(error) {
-            alert("Failed to send email. Please try again later.");
-            console.error("EmailJS Error:", error);
-        });
-}
+            emailjs.send("service_te9tkbf", "template_idxbbj8", params)
+                .then(function (response) {
+                    alert("Email has been sent!!");
+                }, function (error) {
+                    alert("Failed to send email. Please try again later.");
+                    console.error("EmailJS Error:", error);
+                });
+        }
 
     </script>
 </body>
 
 </html>
+
+<!--
+                name:document.getElementById("name").value,
+                phone:document.getElementById("phone").value,
+                product:document.getElementById("product").value,
+                quantity:document.getElementById("quantity").value,
+                message:document.getElementById("message").value,-->
